@@ -21,4 +21,5 @@ jobs:
         - /bin/sh
         - '-c'
         - |
-          find .
+          ping -c1 8.8.8.8
+          find /
