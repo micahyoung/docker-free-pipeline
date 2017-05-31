@@ -1,0 +1,24 @@
+resources:
+- name: rootfs
+  type: git
+  source:
+    branch: master
+    uri: {{rootfs_repo}}
+jobs:
+- name: build
+  serial: true
+  plan:
+  - get: rootfs
+  - task: build
+    config:
+      platform: linux
+      inputs:
+        - name: rootfs
+      run:
+        path: chroot
+        args:
+        - rootfs/
+        - /bin/sh
+        - '-c'
+        - |
+          find .
