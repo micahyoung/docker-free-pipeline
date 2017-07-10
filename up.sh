@@ -16,15 +16,12 @@ true ${CONCOURSE_PASSWORD:?"!"}
 true ${CONCOURSE_PIPELINE:?"!"}
 true ${ROOTFS_REPO:?"!"}
 
-if ! fly targets | grep $CONCOURSE_URL >/dev/null; then
-  fly login \
-    --target $CONCOURSE_TARGET \
-    --concourse-url $CONCOURSE_URL \
-    --username $CONCOURSE_USERNAME \
-    --password $CONCOURSE_PASSWORD \
-  ;
-fi
-
+fly login \
+  --target $CONCOURSE_TARGET \
+  --concourse-url $CONCOURSE_URL \
+  --username $CONCOURSE_USERNAME \
+  --password $CONCOURSE_PASSWORD \
+;
 
 fly set-pipeline \
   --config pipeline.yml \
